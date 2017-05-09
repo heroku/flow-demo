@@ -56,7 +56,7 @@ describe('when the page loads', () => {
       should.not.exist(err);
 
       // there should be a 200 status code
-      res.status.should.equal(200);
+      res.status.should.equal(400);
 
       done();
     });
