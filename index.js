@@ -9,19 +9,11 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public');
 
 app.get('/', function(request, response) {
-  var env = process.env.APP_ENV;
-  if (env == 'staging') {
-    var envName = 'staging'
-  } else if (env == 'production') {
-    var envName = 'production'
-  } else {
-    var envName = 'review app'
-  }
-  response.render('index.html', { env: envName});
+  response.render('index.html');
 });
 
 app.listen(app.get('port'), function() {
-  console.log("Node app hi running at localhost:" + app.get('port'));
+  console.log("Node app running at localhost:" + app.get('port'));
 });
 
 module.exports = app
