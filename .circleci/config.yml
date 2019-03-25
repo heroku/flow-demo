@@ -1,0 +1,89 @@
+# .circleci/config.yml
+# https://kevin.pfefferle.co/2018/01/27/circleci-2-with-ember
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:10-browsers
+      environment:
+        JOBS: 5
+  working_directory: ~/flow-demo
+
+version: 2.1
+
+orbs:
+  percy: percy/agent@0.1.3
+
+jobs:
+  checkout_code:
+    <<: *defaults
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  install_dependencies:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v1-deps-{{ .Branch }}-
+            - v1-deps-
+      - run:
+          name: Yarn Install
+          command: yarn install --non-interactive
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  run_tests:
+    <<: *defaults
+    parallelism: 2
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/flow-demo/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: |
+            yarn test
+
+  say_hello:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn run hello
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - run_tests:
+          requires:
+            - install_dependencies
+      - say_hello:
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only: master
+
+experimental:
+  notify:
+    branches:
+      only:
+        - master
