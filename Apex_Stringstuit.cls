@@ -12,9 +12,9 @@ public with sharing class Apex_Stringstuit {
     }
     public Boolean equals(String subString){
         String prod1= 'hcl';
-        String prod2= 'dell';
+        String prod2= 'hel';
         Boolean optput = prod2.equals(prod1);
-        System.debug('o/p wiil be false as it doesn"t equals prod1 '+optput);
+        System.debug('o/p wiil be true as it doesn"t equals prod1 '+optput);
         return optput;
 
     }
@@ -26,21 +26,21 @@ public with sharing class Apex_Stringstuit {
         return result; 
     }
     public String remove(String stringToRemove){
-        String tstring1 = 'salesforce';
-        String tstring2 = 'sales';
+        String tstring1 = 'ssalesforce';
+        String tstring2 = 'ssales';
         String result = tstring2.remove(tstring2);
         System.debug('value will force since removing sales from tstring1'+result);
         return result;
     }
     public String removeEndIgnoreCase(String stringtoRemove){
         String tstring1 = 'this is a salesforce test code';
-        String tstring2 = 'code';
+        String tstring2 = 'test code';
         String result = tstring2.removeEndIgnoreCase(tstring2);
         System.debug('value will be this is a salesforce test since we removed code at end'+result);
         return result; 
     }
     public Boolean startsWith(String prefix){
-        String tstring1 = 'salesforce';
+        String tstring1 = 'salessalesforce';
         String tstring2 = 'sales';
         Boolean result = tstring2.startsWith(tstring2);
         System.debug('value will be true as they start with sales'+result);
