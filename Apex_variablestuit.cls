@@ -4,7 +4,7 @@ public with sharing class Apex_variablestuit {
         Integer c = 1;
         Set<String> setOfProducts =new Set<string>();
         Map<Id,String> mapOfProductIdToName = new Map<id, string>();
-        String strname = 'My String new';
+        String strname = 'My String new.my new strinh';
         Integer myinteger = 1;
         Boolean myBoolean = true;
        // Integer m = 100;
