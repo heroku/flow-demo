@@ -12,7 +12,7 @@ public with sharing class Apex_Stringstuit {
     }
     public Boolean equals(String subString){
         String prod1= 'hcl';
-        String prod2= 'hel';
+        String prod2= 'hcl';
         Boolean optput = prod2.equals(prod1);
         System.debug('o/p wiil be false as it doesn"t equals prod1 '+optput);
         return optput;
