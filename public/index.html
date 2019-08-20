@@ -1,59 +1,79 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.7.0/tachyons.css">
-		<title>Vistara Food Booking</title>
-	</head>
-	<body background="https://thelovevitamin.com/wp-content/uploads/2011/05/P5123128.jpg" >
-		<div class="vh-100 w-100 flex justify-center">
-			<div class="flex flex-column items-center justify-top">
-				<h2 class="fw4 red">Vistara </h2>
-				<p class="silver ma0">Bhojan</p>
-				<div class="pt5">
-					<span id="env" class="white pv1 ph2 br-pill bg-light-blue"></span>
-				</div>
-			</div>
-			
-			<div class="container">
-			<form id="phoneChangerForm" action="/update" method="post" style="width: 400px">
-			    <div class="panel panel-default">
-				<div class="panel-heading">
-				    <h3 class="panel-title">Order food of your choice</h3>
-				</div>
-				<div class="panel-body">
-				    <div class="form-group">
-					<label for="firstName">First Name</label>
-					<input type="text" class="form-control" id="firstName" placeholder="First Name" required>
-				    </div>
-				    <div class="form-group">
-					<label for="lastName">Last Name</label>
-					<input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
-				    </div>
-				    <div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" class="form-control" id="email" placeholder="Email" required>
-				    </div>
-				    <div class="form-group">
-					<label for="phone">Booking ID</label>
-					<input type="tel" class="form-control" id="phone" placeholder="Booking ID" required>
-				    </div>
-				</div>
-				<div class="panel-footer">
-				    <div id="message" class="alert alert-info" role="alert" style="display: none;">
-					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-					<span id="messageMessage"></span>
-				    </div>
-				    <div id="error" class="alert alert-danger" role="alert" style="display: none;">
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only">Error:</span>
-					<span id="errorMessage"></span>
-				    </div>
-				    <button type="submit" class="btn btn-primary">Order</button>
-				</div>
-            			</div>
-        		</form>
-    		</div>
-		</div>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.7.0/tachyons.css">
+<title>Vistara Food Booking</title>
+</head>
+<body background="https://thelovevitamin.com/wp-content/uploads/2011/05/P5123128.jpg" >
+<div class="vh-100 w-100 flex justify-center">
+<div class="flex flex-column items-center justify-top">
+<h2 class="fw4 red">Vistara Bhojan</h2>
+<div class="panel-heading">
+   <h3 class="panel-title">Order food of your choice</h3>
+</div>
+<div class="pt5">
+<span id="env" class="white pv1 ph2 br-pill bg-light-blue"></span>
+</div>
+</div>
 
-	</body>
+<div class="container">
+<form id="phoneChangerForm" action="/update" method="post" style="width: 400px">
+   <div class="panel panel-default">
+
+
+<tr>
+<div class="panel-body">
+<table border="1" style="margin-top: 174px;">
+<tr>
+<td>
+<label style="color:red" for="firstName">First Name</label>
+</td>
+<td>
+<input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+ </td>
+ </tr>
+ <tr>
+ <td>
+<label style="color:red"for="lastName">Last Name</label>
+</td>
+<td>
+<input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+</td>
+ </tr>
+ <tr>
+   <div class="form-group">
+ <td>
+<label style="color:red" for="email">Email</label>
+</td>
+<td>
+<input type="email" class="form-control" id="email" placeholder="Email" required>
+</td>
+  </tr>
+ <tr>
+   <td>
+<label style="color:red" for="phone">Booking ID</label>
+</td>
+<td>
+<input style="color:red" type="tel" class="form-control" id="phone" placeholder="Booking ID" required>
+</td>
+   </tr>
+</table>
+<div class="panel-footer">
+   <div id="message" class="alert alert-info" role="alert" style="display: none;">
+<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+<span id="messageMessage"></span>
+   </div>
+   <div id="error" class="alert alert-danger" role="alert" style="display: none;">
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+<span class="sr-only">Error:</span>
+<span id="errorMessage"></span>
+   </div>
+   <button type="submit" class="btn btn-primary">Order</button>
+</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
 </html>
