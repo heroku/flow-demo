@@ -1,0 +1,35 @@
+.THIS .modal-body{
+    height:auto !important;
+    padding:0;
+}
+.THIS .slds-button_brand{
+    width:250px;
+}
+.THIS .labelStyle{
+    display: inline-block;
+    color:rgb(62, 62, 60);
+    font-size: .75rem;
+    padding-right: .5rem;
+    padding-top: .25rem;
+    margin-bottom: .125rem
+}
+.THIS lightning-helptext{
+    display:none;
+}
+.THIS .error-cls {
+    background-color: rgb(255, 235, 230);
+    border-radius: 3px;
+    margin: 1.143rem 0px;
+    padding: 8px;
+}
+.THIS .error-cls > span {
+    padding: 0 5px;
+    display: inline-block;
+}
+.THIS .error-cls > span:first-child {
+    width: 10%;
+    vertical-align: top;
+}
+.THIS .error-cls > span:last-child {
+    width: 90%;
+}
