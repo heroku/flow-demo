@@ -1,4 +1,4 @@
-# Heroku Flow Demo 1
+# Heroku Flow Demo 
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
 
