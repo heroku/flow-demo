@@ -28,11 +28,8 @@ public abstract inherited sharing class JSC_EmailFieldInfoSelector extends fflib
 
   public List<JSC_GenesysEmailTemplate__mdt> selectAll()
   {
-    return Database.query(
-        newQueryFactory()
-        .addOrdering(JSC_GenesysEmailTemplate__mdt.Sequence__c, fflib_QueryFactory.SortOrder.ASCENDING)
-            .toSOQL()
-    );
+    String mdquery = 'newQueryFactory().addOrdering(JSC_GenesysEmailTemplate__mdt.Sequence__c, fflib_QueryFactory.SortOrder.ASCENDING).toSOQL()';
+    return Database.query(mdquery);
   }
    
 }
