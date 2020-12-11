@@ -22,17 +22,15 @@ public class JSC_EmailToCallCenter
         
       if(emailDataMap.size()>0 && emailFields.size()>0){
             for(JSC_GenesysEmailTemplate__mdt emailField : emailFields){
-                
+              String v1 = '= <<< <br/> ';
                 if(emailField.Sequence__c == 0){
                   subject = emailField.Value__c;
-                }                   
-                if(emailField.Sequence__c == -1){
+                }else if(emailField.Sequence__c == -1){
                   callCenterEmailId = new String[] {emailField.Value__c};
-                }                   
-                if(emailDataMap.containsKey(emailField.MasterLabel)){
-                   emailbody = emailbody + '>>>' + emailField.Value__c +'=' + emailDataMap.get(emailField.MasterLabel) + '<<< <br/> ';
+                }else if(emailDataMap.containsKey(emailField.MasterLabel)){
+                   emailbody = emailbody + '>>>' + emailField.Value__c +'=' + emailDataMap.get(emailField.MasterLabel) + v1;
                 }else if(emailField.Sequence__c != 0 && emailField.Sequence__c != -1){
-                   emailbody = emailbody + '>>>' +emailField.Value__c+'= <<< <br/> ';  
+                   emailbody = emailbody + '>>>' +emailField.Value__c+v1;  
                 }
             }
         }
