@@ -1,0 +1,1 @@
+public with sharing class JSC_EmailFieldInfoSelectorImp extends JSC_EmailFieldInfoSelector {}
