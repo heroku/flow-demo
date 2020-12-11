@@ -20,7 +20,7 @@ public class JSC_EmailToCallCenter
  
        List<JSC_GenesysEmailTemplate__mdt> emailFields = service.getEmailFieldInfo();
         
-      if(emailDataMap.size()>0 && emailFields.size()>0){
+      if(emailDataMap.isNotEmpty() && emailFields.isNotEmpty()){
             for(JSC_GenesysEmailTemplate__mdt emailField : emailFields){
               String v1 = '= <<< <br/> ';
                 if(emailField.Sequence__c == 0){
