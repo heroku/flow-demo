@@ -1,4 +1,4 @@
-public abstract inherited sharing class JSC_EmailFieldInfoSelector extends fflib_SObjectSelector{
+public abstract with sharing class JSC_EmailFieldInfoSelector extends fflib_SObjectSelector{
  public JSC_EmailFieldInfoSelector()
   {
     super();
