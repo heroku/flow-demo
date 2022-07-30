@@ -1,7 +1,7 @@
 {
   "name": "node-js-sample",
   "version": "0.1.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "A sample Node.js app using Express 4. Test",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
