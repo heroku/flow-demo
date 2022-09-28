@@ -1,29 +1,439 @@
-<!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.7.0/tachyons.css">
-		<title>Dreamforce 2018 is the best</title>
-	</head>
-	<body>
-		<div class="vh-100 w-100 flex justify-center">
-			<div class="flex flex-column items-center justify-center">
-				<h2 class="fw4 green">Panorama Trail!</h2>
-				<h2 class="fw4 green">Panorama Trail!</h2>
-				<h2 class="fw4 green">Panorama Trail!</h2>
-				<h2 class="fw4 green">Panorama Trail!</h2>
-				<h2 class="fw4 green">Panorama Trail!</h2>
-				<h2 class="fw4 green">Panorama Trail!</h2>
-				<h2 class="fw4 green">Panorama Trail!</h2>
-				<p class="silver ma0">Built with Herokuuuuuuu</p>
-				<div class="pt5">
-					<span id="env" class="white pv1 ph2 br-pill bg-light-blue"></span>
-				</div>
-			</div>
-		</div>
+		<meta charset="UTF-8">
+		<title>Landing-Page</title>
+		<link href="css/customize.css" rel="stylesheet">
+		<link href="css/devices.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script type="text/javascript" src="https://pi.pardot.com/pd.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script><!--	<style>
+		body {
+			font-family: 'Montserrat';
+			font-size: 16px;
+		}
+	</style> --><style>
+		body {
+			font-family: 'Montserrat';
+			font-size: 16px;
+		}
+		      form.form p.form-field {
+        margin-bottom:10px;
+        font-family: 'Montserrat';
+      }
+      
 
-		<script>
-			var env = "<%= env %>";
-			document.getElementById("env").innerHTML = env;
-		</script>
-	</body>
-</html>
+      /* Form background color */
+      form.form {
+        background-color:#ffffff;
+        font-family: 'Montserrat';
+      }
+
+
+      /* --------------------------
+
+      WARNING: EDITING THE BELOW CSS MIGHT
+      BREAK THE TEMPLATE
+
+      --------------------------*/
+
+
+      form.form input[type=text], form.form textarea {
+        width:100%;
+        border:solid 1px #E0E0E0;
+        background-color:#FFF;
+        padding:5px !important;
+        font-size:15px;
+        font-family: 'Open Sans', sans-serif;
+        width:100% !important;
+        border-radius: 5px;
+      }
+      form.form input[type=text]:focus, form.form textarea:focus, form.form select:focus {
+        outline:none;
+      }
+      /* Background of the submit button */
+      form.form input[type=submit] {
+        background-color:#C4C6C7;
+        border:0;
+        color:black;
+        font-size:15px;
+        font-family: 'Montserrat';
+        padding:10px 30px !important;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight:700;
+      }
+      form.form p label{
+          font-size: 12pt;
+          font-family: 'Montserrat' !important;
+      }
+      form.form p label {
+             color: #212529;
+             font-size: 12pt;
+            font-family: 'Montserrat' !important;
+          font-weight: 400;
+      }
+            
+      form.form p.submit {
+        margin-right:0 !important;
+        text-align:center;
+        font-family: 'Montserrat';
+        
+      }
+      form.form label.inline {
+        display:inline-block !important;
+        padding-right:8px;
+        font-size:13px;
+      }
+      form.form textarea {
+        height:75px;
+      }
+      form.form select {
+        width:100%;
+        border:solid 1px #E0E0E0;
+        background-color:#FFF;
+        padding:5px !important;
+        font-size:15px;
+        border-radius:0;
+        -moz-border-radius:0;
+        -webkit-border-radius:0;
+        font-family: 'Open Sans', sans-serif;
+          -moz-appearance: none;
+          -webkit-appearance: none;
+          appearancce: none;
+          background-position: right center;
+          background-repeat: no-repeat;
+          background-size: 1ex;
+          background-origin: content-box;
+          
+      }
+	</style><link href="https://fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800" rel="stylesheet" type="text/css"><script type="text/javascript" src="https://pardot.vinacapital.com/js/piUtils.js?ver=2021-09-20"></script><script type="text/javascript">
+piAId = '886683';
+piCId = '8339';
+piHostname = 'pi.pardot.com';
+
+(function() {
+	function async_load(){
+		var s = document.createElement('script'); s.type = 'text/javascript';
+		s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+		var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+	}
+	if(window.attachEvent) { window.attachEvent('onload', async_load); }
+	else { window.addEventListener('load', async_load, false); }
+})();
+</script><script type="text/javascript" src="https://pi.pardot.com/analytics?ver=3&amp;visitor_id=365363767&amp;visitor_id_sign=738da81a9fe095af0801b54ca2e680f272d0e7898b28f5c9fa96008118ff9e437b101759a706c2217a6ca7571d3bf726132d3363&amp;pi_opt_in=&amp;campaign_id=8339&amp;account_id=886683&amp;title=Landing-Page&amp;url=https%3A%2F%2Fpardot.vinacapital.com%2Fl%2F885683%2F2021-08-31%2F3js61&amp;referrer=https%3A%2F%2Fembedded.pardot.force.com%2F"></script><script type="text/javascript" src="https://pardot.vinacapital.com/analytics?conly=true&amp;visitor_id=365363767&amp;visitor_id_sign=738da81a9fe095af0801b54ca2e680f272d0e7898b28f5c9fa96008118ff9e437b101759a706c2217a6ca7571d3bf726132d3363&amp;pi_opt_in=&amp;campaign_id=8339&amp;account_id=886683&amp;title=Landing-Page&amp;url=https://pardot.vinacapital.com/l/885683/2021-08-31/3js61&amp;referrer=https://embedded.pardot.force.com/"></script></head><body>
+	<div class="container">
+		<div class="header d-flex justify-content-between align-items-center">
+		<div pardot-region="Content0">	<a href="#" class="logo" target="_top"><img src="https://cloud.cmctelecom.vn/assets/images/base/cmc-logo.png"></a> </div>
+			</div>
+		<div class="banner">
+		<div pardot-region="Content1">	
+		</div>
+			
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+	var anchors = document.getElementsByTagName("a");
+	for (var i=0; i<anchors.length; i++) {
+		var anchor = anchors[i];
+		if(anchor.getAttribute("href")&&!anchor.getAttribute("target")) {
+			anchor.target = "_top";
+		}
+	}
+		
+//]]>
+</script><input type="hidden" name="hiddenDependentFields" id="hiddenDependentFields" value=""></form>
+<script type="text/javascript">(function(){ pardot.$(document).ready(function(){ (function() {
+	var $ = window.pardot.$;
+	window.pardot.FormDependencyMap = [];
+
+	$('.form-field-primary input, .form-field-primary select').each(function(index, input) {
+		$(input).on('change', window.piAjax.checkForDependentField);
+		window.piAjax.checkForDependentField.call(input);
+	});
+})(); });})();</script></div>
+		</div>
+	</div> 
+	    
+	</div>
+	<div class="footer">
+		<div class="ft3line d-flex justify-content-between align-items-stretch">
+			<div class="w-33 bgdark"></div>
+			<div class="w-33 bgred"></div>
+			<div class="w-33 bggray"></div>
+		</div>
+		
+	</div>
+	
+<style type="text/css">
+
+/* CSS Document */
+.pardot-form{
+    color: black;
+    font-family: 'Montserrat';
+    font-size: 16pt;
+}
+.header{
+	height: auto;
+	background-color: #fff;
+	padding: 30px 0;
+}
+.header .logo, .header .logo img{
+	height: 25px;
+}
+
+.navbar-nav span{
+	color: #999 !important;
+	line-height: 35px;
+}
+.bigheading{
+	width: 100%;
+	padding: 30px 0 0 0;
+}
+.bigheading h1{
+	text-align: center;
+}
+.ctbox{
+	padding: 30px 0;
+	border-bottom: 1px #B8B8B8 solid;
+}
+.ctbox img.icon{
+	width: 20px;
+	margin:0 15px 0 0;
+}
+.ctbox h5{
+	margin: 15px 0 15px 0;
+	font-weight: bold;
+}
+.ctbox p{
+	margin: 0;
+}
+.btn-primary{
+	background-color: #C4C6C7 !important;
+    border-color: #C4C6C7 !important;
+	color: #000000 !important;
+	margin-top: 20px;
+	font-weight: bold !important;
+	font-size: 16px !important;
+	text-transform: uppercase !important;
+}
+.btn-primary:hover{
+	background-color: #D81921 !important;
+	border-color: #D81921 !important;
+	color: #fff !important;
+}
+.devider{
+	padding: 30px 0 0 0;
+	border-top: 1px #B8B8B8 solid;
+}
+.bgred{
+	background-color: #D81921;
+}
+.bglightgray{
+	background-color: #BCBCBC;
+}
+.bglightgray2{
+	background-color: #F1F2F2;
+}
+.bggray{
+	background-color: #414042;
+}
+.bgdark{
+	background-color: #000000;
+}
+.colorwhite{
+	color: white !important;
+}
+.about div div{
+	min-height: 135px;
+	height: auto;
+	border-bottom: 3px #fff solid;
+	width: 100%;
+}
+.f14{
+	font-size: 14px;
+}
+.w-33{
+	width: 33.3%;
+}
+.about div div div{
+	padding: 20px;
+}
+.about div div div p{
+	font-size: 14px;
+	margin: 0;
+}
+.about .ab1{
+	width: 30%;
+}
+.about .ab1 h4{
+	margin: 0 !important;
+}
+.about .ab2{
+	width: 70%;
+}
+.about h4, .contact h4{
+	font-weight: bold;
+}
+.contact .ipform span{
+	width: 170px;
+}
+.contact .ipform .form-control{
+	width: calc(100% - 170px) !important;
+}
+.ipform .form-check{
+	margin-right: 20px;
+}
+.footer{
+	background-color: #323232;
+	padding-bottom: 25px;
+}
+.ft3line{
+	height: 5px;
+	width: 100%;
+}
+.ft3line div{
+	height: 5px;
+}
+.ftline{
+	width: 100%;
+	height: 2px;
+	background-color: #B8B8B8;
+}
+.footer span{
+	color: #fff;
+	font-size: 14px;
+}
+.slide-up{
+	position: fixed;
+	right: 20px;
+	bottom: 130px;
+}
+.slide-up a img{
+	width: 60px;
+}
+.col span{
+    font-family:'Montserrat';
+    color:black;
+    text-decoration:none;
+}
+
+@charset "UTF-8";
+/* CSS Document */
+
+/* iphone 5/5SE*/
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px)
+and (orientation: portrait) {
+	
+}
+/* iphone 6, 6s, 7, 8 */
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 667px) 
+    and (-webkit-device-pixel-ratio : 2) 
+	and (orientation: portrait) {
+
+}
+
+/* iphone 6+, 6s+, 7+, 8+ */
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 736px) 
+    and (-webkit-device-pixel-ratio : 3)
+	and (orientation: portrait) {
+		.navbar-nav span{
+			display: none;
+		}
+}
+
+/* iphone X , XS, 11 Pro, 12 Mini */
+@media only screen 
+	and (min-device-width: 375px) 
+	and (max-device-height: 812px) 
+	and (-webkit-device-pixel-ratio: 3) 
+	and (orientation: portrait) {
+	}
+
+/* iphone 12, 12 Pro */
+@media only screen 
+	and (min-device-width: 390px) 
+	and (max-device-height: 844px) 
+	and (-webkit-device-pixel-ratio: 3)
+	and (orientation: portrait) {
+
+}
+
+/* iphone XR, 11 */
+@media only screen 
+	and (min-device-width : 414px) 
+	and (max-device-height : 896px) 
+	and (-webkit-device-pixel-ratio : 2)
+	and (orientation: portrait) {
+
+}
+
+/* iphone XS Max, 11 Pro Max */
+@media only screen 
+	and (min-device-width : 414px) 
+	and (max-device-height : 896px) 
+	and (-webkit-device-pixel-ratio : 3)
+	and (orientation: portrait) {
+
+	}
+
+/* iphone 12 Pro Max */
+@media only screen 
+	and (min-device-width : 428px) 
+	and (max-device-height : 926px) 
+	and (-webkit-device-pixel-ratio : 3)
+	and (orientation: portrait) { 
+
+	}
+// ===== Scroll to Top ==== 
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+$('#return-to-top').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 500);
+});
+// ===== scroll down ====
+  /* -------------------------------------------------------------------------
+     begin Scroll Down Button
+   * ------------------------------------------------------------------------- */
+(function() {
+  'use strict';
+
+  var btnScrollDown = document.querySelector('#scroll_down');
+
+  function scrollDown() {
+    var windowCoords = document.documentElement.clientHeight;
+    (function scroll() {
+      if (window.pageYOffset < windowCoords) {
+        window.scrollBy(0, 10);
+        setTimeout(scroll, 0);
+      }
+      if (window.pageYOffset > windowCoords) {
+        window.scrollTo(0, windowCoords);
+      }
+    })();
+  }
+
+  btnScrollDown.addEventListener('click', scrollDown);
+})();
+  /* -------------------------------------------------------------------------
+     end Scroll Down Button
+   * ------------------------------------------------------------------------- */
+</style>
+</body></html>
