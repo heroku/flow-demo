@@ -17,6 +17,7 @@
   },
   "engines": {
     "ejs": "2.5.5"
+    "node": "18.x"
   },
   "repository": {
     "type": "git",
