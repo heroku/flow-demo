@@ -3,76 +3,100 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const server = require('../index');
+describe('GET /', () => {
+  describe('response status', () => {
+    const server = require('../index');
 
-describe('when the page loads', () => {
-  it('it should respond with a 200', (done) => {
-    chai.request(server)
-    .get('/')
-    .end( (err, res) => {
-      // there should be no errors
-      should.not.exist(err);
+    it('should respond with 200', (done) => {
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          should.not.exist(err);
+          res.status.should.equal(200);
+          done();
+        });
+    });
 
-      // there should be a 200 status code
-      res.status.should.equal(200);
-
-      done();
+    it('should not respond with 404', (done) => {
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          should.not.exist(err);
+          res.status.should.not.equal(404);
+          done();
+        });
     });
   });
 
-  it('it should display the correct content', (done) => {
-    chai.request(server)
-    .get('/')
-    .end( (err, res) => {
-      // there should be no errors
-      should.not.exist(err);
+  describe('response content', () => {
+    const server = require('../index');
 
-      // there should be a 200 status code
-      res.status.should.equal(200);
-
-      done();
+    it('should return HTML content', (done) => {
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          should.not.exist(err);
+          res.type.should.include('html');
+          done();
+        });
     });
   });
 
-  it('it should display the correct environment', (done) => {
-    chai.request(server)
-    .get('/')
-    .end( (err, res) => {
-      // there should be no errors
-      should.not.exist(err);
-
-      // there should be a 200 status code
-      res.status.should.equal(200);
-
-      done();
+  describe('environment display', () => {
+    afterEach(() => {
+      delete process.env.APP_ENV;
+      delete require.cache[require.resolve('../index')];
     });
-  });
 
-  it('it should not show a 404', (done) => {
-    chai.request(server)
-    .get('/')
-    .end( (err, res) => {
-      // there should be no errors
-      should.not.exist(err);
-
-      // there should be a 200 status code
-      res.status.should.equal(200);
-
-      done();
+    it('should display "staging" when APP_ENV is staging', (done) => {
+      process.env.APP_ENV = 'staging';
+      const server = require('../index');
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          should.not.exist(err);
+          res.status.should.equal(200);
+          res.text.should.include('staging');
+          done();
+        });
     });
-  });
 
-  it('it should load correctly', (done) => {
-    chai.request(server)
-    .get('/')
-    .end( (err, res) => {
-      // there should be no errors
-      should.not.exist(err);
+    it('should display "production" when APP_ENV is production', (done) => {
+      process.env.APP_ENV = 'production';
+      const server = require('../index');
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          should.not.exist(err);
+          res.status.should.equal(200);
+          res.text.should.include('production');
+          done();
+        });
+    });
 
-      // there should be a 200 status code
-      res.status.should.equal(200);
+    it('should display "review app" when APP_ENV is not set', (done) => {
+      const server = require('../index');
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          should.not.exist(err);
+          res.status.should.equal(200);
+          res.text.should.include('review app');
+          done();
+        });
+    });
 
-      done();
+    it('should display "review app" for an unknown APP_ENV value', (done) => {
+      process.env.APP_ENV = 'unknown';
+      const server = require('../index');
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          should.not.exist(err);
+          res.status.should.equal(200);
+          res.text.should.include('review app');
+          done();
+        });
     });
   });
 });

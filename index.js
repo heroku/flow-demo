@@ -20,8 +20,10 @@ app.get('/', function(request, response) {
   response.render('index.html', { env: envName});
 });
 
-app.listen(app.get('port'), function() {
-  console.log("Node app running at localhost:" + app.get('port'));
-});
+if (require.main === module) {
+  app.listen(app.get('port'), function() {
+    console.log("Node app running at localhost:" + app.get('port'));
+  });
+}
 
 module.exports = app
