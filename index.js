@@ -3,7 +3,7 @@ var app = express();
 
 require('dotenv').config()
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public');
