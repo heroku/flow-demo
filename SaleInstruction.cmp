@@ -1,0 +1,159 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId" access="global" controller="SaleInstructionCtrl">
+
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'Postponement', 'value': 'postponement'},
+                                                        {'label': 'Removal', 'value': 'removal'},
+                                                        {'label': 'Cancellation', 'value': 'cancellation'}
+                                                        ]" />
+    <aura:attribute name="value" type="String" default="postponement" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="disabled" type="Boolean" default="false" />
+    <aura:attribute name="saved" type="Boolean" default="false" />
+    <aura:attribute name="postponeTime" type="String" />
+    <aura:attribute name="displayTimes" type="String[]" />
+    <aura:attribute name="saleTime" type="String" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <aura:attribute name="ids" type="String[]" />
+    <aura:attribute name="uId" type="String" />
+    <aura:attribute name="isBulk" type="Boolean" default="false" />
+    <aura:attribute name="isMStatus" type="Boolean" default="false" />
+    <aura:attribute name="previousAttorneyFCLSaleDateAndTime" type="Object"/>
+    <aura:attribute name="campaignId" type="String"/>
+    <aura:attribute name="campaign" type="object"/>
+    <aura:attribute name="camp" type="object"/>
+    <aura:attribute name="morphesusStatus" type="String"/>
+    <aura:attribute name="tab" type="String"/>
+    <aura:attribute name="cancelDate" type="Date" />
+    <aura:attribute name="postponementDate" type="Date" />
+    <aura:attribute name="removeDate" type="Date" />
+    <aura:attribute name="iserror" type="Boolean" default="false" />
+    <aura:attribute name="errormsg" type="String"/>
+    <div class="slds-is-relative">
+        <lightning:notificationsLibrary aura:id="notifLib" />
+        <div class="modal-header slds-modal__header">
+            <h2 class="title slds-text-heading--medium">Sale Instruction</h2>
+        </div>
+        <div class="scrollable slds-modal__content" style="box-shadow: none;overflow: hidden;">
+            <aura:if isTrue="{!v.showSpinner}">
+                <lightning:spinner alternativeText="Loading" size="medium" variant="brand" />
+            </aura:if>
+             <aura:if isTrue="{!v.iserror}">
+                 <div class="error-cls">
+                     <span><lightning:icon iconName="action:close" size="xx-small" alternativeText="Error!" variant="error" /></span>
+                     <span>{!v.errormsg}</span>
+                 </div>
+            </aura:if>
+            <lightning:tabset variant="scoped" selectedTabId="Morpheus_Status" aura:id="tabs" onselect="{!c.getSelectedTab}">
+                <lightning:recordEditForm aura:id="myRecordForm" onload="{!c.handleLoad}" onsubmit="{!c.handleSubmit}" onsuccess="{!c.handleSuccess}" onerror="{!c.handleError}" recordId="{!v.recordId}" objectApiName="Property_Intake__c">
+                    <lightning:tab label="Sale Instruction" id="Morpheus_Status">
+
+                        <lightning:messages />
+                        <div style="width:100%;text-align:center;margin-bottom:10px">
+                            <lightning:radioGroup onchange="{!c.radioChange}" name="radioButtonGroup" label="" options="{! v.options }" value="{! v.value }" type="button" />
+                        </div>
+                        <aura:if isTrue="{!v.disabled}">
+                            <div style="padding:5px; color:red">
+                                <div style="text-align:center;background-color:#c23934;color:white;padding:7px">
+                                    <lightning:icon iconName="utility:warning" alternativeText="Warning!" variant="warning" size="small" /> &nbsp;&nbsp; Please fill all the required fields
+                                </div>
+                                <br />
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.value == 'cancellation' &amp;&amp; v.tab != 'auction'}">
+                            <!--
+                 			<label for="Cancel_Notification_Date__c" class="labelStyle"><span style="color :red">*</span>Cancel Notification Date</label>
+                            <lightning:inputField fieldName="Cancel_Notification_Date__c" required="true" aura:id="cancellation" variant="label-hidden" value="{!v.cancelDate}" />
+							-->
+                            <lightning:input type="date" name="cancellation" label="Cancel Notification Date" required="true" value="{!v.cancelDate}"/>
+                            
+                            <label for="Cancel_Primary_Reason__c" class="labelStyle"><span
+                                    style="color :red">*</span>Cancel Primary Reason</label>
+                            <lightning:inputField fieldName="Cancel_Primary_Reason__c" required="true" aura:id="cancellation" variant="label-hidden" />
+
+                            <label for="Cancelled_By__c" class="labelStyle"><span style="color :red">*</span>Cancelled
+                                By</label>
+                            <lightning:inputField fieldName="Cancelled_By__c" required="true" value="Trustee" aura:id="cancellation" variant="label-hidden" />
+                        </aura:if>
+                        <aura:if isTrue="{!v.value == 'postponement' &amp;&amp; v.tab != 'auction'}">
+                            <!--
+                            <label for="Postponement_notification_date__c" class="labelStyle"><span style="color :red">*</span>Postponement notification date</label>
+                            <lightning:inputField fieldName="Postponement_notification_date__c" required="true" aura:id="postponement" variant="label-hidden" value="{!v.postponementDate}" />
+							-->
+                            <lightning:input type="date" name="postponement" label="Postponement notification date" required="true" value="{!v.postponementDate}"/>
+                            
+                            <lightning:inputField fieldName="Postponement_New_Auction_Date__c" aura:id="Postponement_New_Auction_Date__c" />
+                            <lightning:inputField fieldName="Postponement_New_Auction_Time__c" style="display:none;" />
+
+                            <lightning:select label="Postponement New Auction Time" name="Postponement_New_Auction_Time__c" value="{!v.postponeTime}">
+                                <option value="" />
+                                <aura:iteration items="{!v.displayTimes}" var="pt">
+                                    <option text="{!pt.label}" value="{!pt.value}" selected="{!v.postponeTime == pt.value}" />
+                                </aura:iteration>
+                            </lightning:select>
+                            <label for="Postponed_Primary_Reason__c" class="labelStyle"><span
+                                    style="color :red">*</span>Postponed Primary Reason</label>
+                            <lightning:inputField fieldName="Postponed_Primary_Reason__c" required="true" value="Beneficiary Request" aura:id="postponement" variant="label-hidden" />
+
+                            <label for="Postponed_by__c" class="labelStyle"><span style="color :red">*</span>Postponed
+                                by</label>
+                            <lightning:inputField fieldName="Postponed_by__c" required="true" value="Trustee" aura:id="postponement" variant="label-hidden" />
+
+                            <lightning:inputField fieldName="Postpone_Indefinitely__c"  disabled="true" />
+
+                        </aura:if>
+                        <aura:if isTrue="{!v.value == 'removal'}">
+                            <!--
+                            <label for="Removal_Date__c" class="labelStyle"><span style="color :red">*</span>Removal Date</label>
+                            <lightning:inputField fieldName="Removal_Date__c" required="true" aura:id="removal" variant="label-hidden"  value="{!v.removeDate}"/>
+							-->
+                            <lightning:input type="date" name="removal" label="Removal Date" required="true" value="{!v.removeDate}"/>
+                            
+                            <label for="Removal_Reason__c" class="labelStyle"><span style="color :red">*</span>Removal
+                                Reason</label>
+                            <lightning:inputField fieldName="Removal_Reason__c" required="true" aura:id="removal" variant="label-hidden" />
+
+                            <label for="Removal_Requested_By__c" class="labelStyle"><span
+                                    style="color :red">*</span>Removal Requested By</label>
+                            <lightning:inputField fieldName="Removal_Requested_By__c" required="true" aura:id="removal" variant="label-hidden" value="Trustee" />
+                        </aura:if>
+                        <div class="slds-m-top_medium" style="text-align:center;">
+                            <aura:if isTrue="{!v.isBulk}">
+                                <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.handleSubmit}" />
+                                <aura:set attribute="else">
+                                    <lightning:button variant="brand" type="submit" name="save" label="Save" />
+                                </aura:set>
+                            </aura:if>
+
+                        </div>
+
+                    </lightning:tab>
+                    <aura:if isTrue="{!v.isMStatus}">
+                        <lightning:tab label="Switch To Auction" id="auction">
+                            <label for="Attorney_FCL_Sale_Date__c" class="labelStyle"><span
+                                    style="color :red">*</span>Attorney FCL Sale Date</label>
+                            <lightning:inputField fieldName="Attorney_FCL_Sale_Date__c" aura:id="auction" required="true" variant="label-hidden" />
+                            <!--<label for="Attorney_FCL_Sale_Time__c" class="labelStyle"><span style="color :red">*</span>Attorney FCL Sale Time</label>-->
+                            <lightning:inputField fieldName="Attorney_FCL_Sale_Time__c" variant="label-hidden" aura:id="auction" style="display:none;" value="{!v.saleTime}" />
+                            <lightning:select label="Attorney FCL Sale Time" name="Attorney_FCL_Sale_Time__c" value="{!v.saleTime}" required="false">
+                                <option text="{!v.saleTime}" value="{!v.saleTime}" />
+                                <aura:iteration items="{!v.displayTimes}" var="st">
+                                    <option text="{!st.label}" value="{!st.value}" selected="{!st.value == v.saleTime}" />
+                                </aura:iteration>
+                            </lightning:select>
+                            <div class="slds-m-top_medium" style="text-align:center;">
+                                <aura:if isTrue="{!v.isBulk}">
+                                    <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.handleSubmit}" />
+                                    <aura:set attribute="else">
+                                        <lightning:button variant="brand" name="save" label="Save" type="submit"/>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </lightning:tab>
+                    </aura:if>
+
+                </lightning:recordEditForm>
+            </lightning:tabset>
+
+        </div>
+    </div>
+</aura:component>
