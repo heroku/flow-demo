@@ -7,7 +7,6 @@ app.set('port', (process.env.PORT || 5000));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public');
-
 app.get('/', function(request, response) {
   var env = process.env.APP_ENV;
   if (env == 'staging') {
